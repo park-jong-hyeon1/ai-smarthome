@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 스마트홈 정부지원 실증사업</title>
+  <title>AI 스마트홈 실증사업 모집</title>
   
   <style>
     /* =========================================
-       1. 전체 글자 굵기 강화 및 가독성 최적화 색상
+       1. 폰트 설정 (나눔스퀘어 볼드 웹 폰트 추가)
        ========================================= */
+    @font-face {
+      font-family: 'NanumSquareBold';
+      src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareB.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
-      font-family: 'HY고딕', 'HYGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #111111; /* 눈이 편안한 진한 검정 */
+      font-family: 'NanumSquareBold', '맑은 고딕', 'Malgun Gothic', sans-serif;
+      margin: 0; padding: 0;
+      color: #000000; /* 완전 진한 검정으로 가독성 극대화 */
       line-height: 1.7;
-      background-color: #f8f9fa; /* 부드러운 배경색 */
-      font-weight: 600; /* 전체 기본 글자를 굵게 처리 */
+      background-color: #f4f7f6;
       font-size: 16px;
     }
     a { text-decoration: none; color: inherit; }
@@ -24,256 +29,181 @@
     html { scroll-behavior: smooth; }
 
     /* =========================================
-       2. 상단 헤더 (정부기관 표시)
+       2. 상/하단 정부기관 배너
        ========================================= */
     .gov-banner {
-      background-color: #0b2242;
-      color: #ffffff;
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 0.9em;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+      background-color: #002b5c; color: #ffffff;
+      text-align: center; padding: 12px 20px;
+      font-size: 1.1em; letter-spacing: 1px;
     }
     header {
-      background: rgba(255, 255, 255, 0.98);
-      border-bottom: 2px solid #e2e8f0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      background: #ffffff; border-bottom: 3px solid #e0e0e0;
+      position: sticky; top: 0; z-index: 100;
+      padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    header h1 { margin: 0; font-size: 1.4em; color: #1e3a8a; font-weight: 900; }
-    nav a { margin-left: 25px; font-weight: 800; color: #334155; transition: color 0.3s; }
-    nav a:hover { color: #2563eb; }
+    header h1 { margin: 0; font-size: 1.5em; color: #0044cc; }
+    nav a { margin-left: 25px; color: #333; }
+    nav a:hover { color: #0044cc; }
 
     /* =========================================
-       3. 공통 레이아웃 및 카드 디자인
+       3. 공통 섹션 및 카드
        ========================================= */
-    section { padding: 90px 20px; max-width: 1100px; margin: 0 auto; }
-    .section-title { text-align: center; margin-bottom: 60px; }
-    .section-title p.badge { display: inline-block; background: #dbeafe; color: #1e40af; padding: 8px 20px; border-radius: 30px; font-weight: 800; margin-bottom: 15px; font-size: 1.1em; }
-    .section-title h2 { font-size: 2.5em; margin-bottom: 20px; color: #0f172a; font-weight: 900; line-height: 1.4; letter-spacing: -1px; }
-    .section-title h2 em { color: #2563eb; font-style: normal; }
+    section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 2.5em; margin-bottom: 20px; color: #111; line-height: 1.4; }
+    .section-title h2 em { color: #0044cc; font-style: normal; }
     
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
     
     .card {
-      background: #ffffff; padding: 35px; border-radius: 20px;
-      border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      background: #ffffff; padding: 35px; border-radius: 15px;
+      border: 2px solid #d1d5db; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
-    .card h3 { color: #1e40af; font-size: 1.4em; margin-top: 0; font-weight: 900; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
-    .card ul li, .card ol li { margin-bottom: 12px; color: #334155; }
+    .card h3 { color: #0044cc; font-size: 1.5em; margin-top: 0; border-bottom: 3px solid #f0f0f0; padding-bottom: 15px; }
 
     /* =========================================
-       4. 메인 히어로 (요청하신 AI 단면도 느낌의 네온/블루톤 배경)
+       4. 메인 히어로 (AI 네온 스마트홈 사진)
        ========================================= */
     #overview {
       max-width: 100%;
-      /* 첨부하신 사진과 가장 유사한 AI 스마트홈 네온 블루톤의 하이퀄리티 배경입니다 */
-      background: linear-gradient(rgba(11, 34, 66, 0.8), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-      color: white;
-      text-align: center;
-      padding: 160px 20px;
-      box-shadow: inset 0 0 100px rgba(0,100,255,0.2);
+      background: linear-gradient(rgba(0, 15, 30, 0.7), rgba(0, 15, 30, 0.8)), url('https://images.unsplash.com/photo-1558384515-d7e17cb03099?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+      color: white; text-align: center; padding: 180px 20px;
     }
-    #overview .badge { background: rgba(37, 99, 235, 0.9); color: #fff; border: 1px solid #60a5fa; }
-    #overview h2 { color: #ffffff; font-size: 3.2em; text-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-    #overview h2 em { color: #60a5fa; text-shadow: 0 0 20px rgba(96, 165, 250, 0.6); }
-    #overview p.desc { color: #e2e8f0; font-size: 1.3em; font-weight: 700; margin-top: 30px; }
+    #overview h2 { color: #ffffff; font-size: 3.5em; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+    #overview h2 em { color: #4da6ff; }
+    #overview p.desc { color: #f0f0f0; font-size: 1.4em; margin-top: 25px; }
 
     /* =========================================
-       5. 연구 배경 및 목적 (가독성 넘버링)
+       5. 업무 배경 (가독성 넘버링 처리)
        ========================================= */
-    .bg-list { background: #ffffff; border-radius: 20px; padding: 40px 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid #2563eb; }
-    .bg-list ol { list-style: none; padding: 0; margin: 0; counter-reset: custom-counter; }
-    .bg-list ol li { position: relative; padding-left: 50px; margin-bottom: 30px; font-size: 1.15em; color: #1e293b; }
+    .bg-list { background: #fff; border: 3px solid #0044cc; border-radius: 15px; padding: 40px; }
+    .bg-list ol { list-style: none; padding: 0; margin: 0; }
+    .bg-list ol li {
+      position: relative; padding-left: 50px; margin-bottom: 25px;
+      font-size: 1.2em; color: #222; line-height: 1.6;
+    }
     .bg-list ol li:last-child { margin-bottom: 0; }
     .bg-list ol li::before {
-      counter-increment: custom-counter;
-      content: counter(custom-counter);
-      position: absolute; left: 0; top: -2px;
-      background: #2563eb; color: white; width: 32px; height: 32px;
+      content: counter(li); counter-increment: li;
+      position: absolute; left: 0; top: 0;
+      background: #0044cc; color: white; width: 35px; height: 35px;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 0.9em; box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+      font-size: 1.1em;
     }
-    .bg-list strong { color: #0f172a; font-size: 1.1em; display: block; margin-bottom: 8px; }
+    .bg-list ol { counter-reset: li; }
 
     /* =========================================
-       6. 참여 기관 및 한성시스코
+       6. 참여 기관 및 한성시스코 (설명 단축)
        ========================================= */
-    .highlight-box { background: #f0fdf4; border: 2px solid #22c55e; padding: 30px; border-radius: 15px; margin-bottom: 25px; }
-    .highlight-box h3 { color: #166534; margin-top: 0; font-size: 1.4em; font-weight: 900; }
-    .partners-simple { background: #ffffff; border: 1px solid #cbd5e1; padding: 25px; border-radius: 15px; font-size: 1.1em; color: #475569; }
-    .partners-simple strong { color: #0f172a; display: inline-block; width: 140px; }
-    .partners-simple div { margin-bottom: 12px; }
-
+    .highlight-box { background: #e6f2ff; border: 3px solid #0044cc; padding: 25px; border-radius: 12px; margin-bottom: 20px; }
+    .highlight-box h3 { color: #003399; margin: 0 0 10px 0; font-size: 1.5em; }
+    .partners-box { background: #fff; border: 2px solid #ccc; padding: 25px; border-radius: 12px; font-size: 1.2em; color: #333; }
+    
     /* =========================================
        7. 플로팅 전화 버튼 및 푸터
        ========================================= */
     .floating-btn {
-      position: fixed; bottom: 35px; right: 35px; background-color: #2563eb; color: white !important;
-      padding: 18px 35px; border-radius: 50px; box-shadow: 0 8px 25px rgba(37,99,235,0.4);
-      font-weight: 900; font-size: 18px; z-index: 999; display: flex; align-items: center; gap: 10px; transition: transform 0.2s;
+      position: fixed; bottom: 30px; right: 30px; background-color: #0044cc; color: white !important;
+      padding: 18px 30px; border-radius: 50px; font-size: 18px; z-index: 999;
+      box-shadow: 0 5px 20px rgba(0,68,204,0.5);
     }
-    .floating-btn:hover { transform: translateY(-5px); background-color: #1d4ed8; }
-
-    footer { background: #0f172a; color: #94a3b8; padding: 50px 20px; text-align: center; font-size: 1em; font-weight: 600; }
-    footer .gov-logos { color: #ffffff; font-size: 1.2em; font-weight: 800; margin-bottom: 20px; display: block; }
-
-    @media (max-width: 768px) {
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      nav { display: none; }
-      #overview h2 { font-size: 2.2em; }
-      .bg-list { padding: 30px 20px; }
-      .partners-simple strong { display: block; margin-bottom: 5px; }
-    }
+    footer { background: #111; color: #ddd; padding: 40px 20px; text-align: center; font-size: 1.1em; }
+    footer .gov-text { color: #fff; font-size: 1.3em; margin-bottom: 15px; display: block; }
   </style>
 </head>
 <body id="top">
 
-  <!-- 정부기관 최상단 배너 -->
+  <!-- 상단 정부기관 명시 -->
   <div class="gov-banner">
-    🇰🇷 산업통상자원부 · 한국산업기술기획평가원(KEIT) 지원 국책과제
+    산업통상자원부 · 한국산업기술기획평가원(KEIT) 지원 실증사업
   </div>
 
   <header>
-    <h1>AI 스마트홈 <small style="color:#64748b; font-weight:700; font-size: 0.8em;">실증세대 모집</small></h1>
+    <h1>AI 스마트홈</h1>
     <nav>
-      <a href="#background">추진 배경</a>
-      <a href="#change">달라지는 점</a>
-      <a href="#installation">설치 안내</a>
+      <a href="#background">연구 배경</a>
+      <a href="#change">주요 변경사항</a>
       <a href="#partners">참여 기관</a>
     </nav>
   </header>
 
-  <!-- 메인 히어로 (AI 스마트홈 네온 배경) -->
+  <!-- 확 바뀐 AI 스마트홈 네온 사진 -->
   <section id="overview">
-    <p class="badge">AI응용제품 신속상용화 지원사업</p>
     <h2>우리 집이 더 편안해지고,<br><em>에너지는 더 똑똑하게</em></h2>
-    <p class="desc">AI가 냉난방·환기·공기청정 사용을 돕는 스마트홈 서비스를<br>실제 생활 속에서 경험하고 함께 검증할 실증세대를 모집합니다.</p>
+    <p class="desc">AI 기반 맞춤 제어로 쾌적도 유지 및 에너지 절감을 실현할 실증세대를 모집합니다.</p>
   </section>
 
-  <!-- [신규] 연구 배경 및 목적 -->
+  <!-- 추가하신 연구 목적 및 배경 -->
   <section id="background">
     <div class="section-title">
-      <p class="badge">추진 배경 및 목적</p>
       <h2>왜 <em>AI 스마트홈</em>이 필요한가요?</h2>
     </div>
     <div class="bg-list">
       <ol>
-        <li>
-          <strong>건축물 에너지 효율화의 필수 과제</strong>
-          국내 전체 에너지 소비의 약 20%를 차지하는 건물 부문의 탄소 배출 저감을 위해, 제로에너지 건축물 인증 등 적극적인 에너지 효율화 대안 마련이 매우 중요해졌습니다.
-        </li>
-        <li>
-          <strong>능동적이고 효율적인 맞춤형 제어</strong>
-          단열과 같은 패시브 기술을 넘어, 다양한 주거 환경과 거주자를 고려하여 에너지가 낭비되지 않고 가장 효율적으로 운영되도록 제어하는 시스템이 필요합니다.
-        </li>
-        <li>
-          <strong>기존 스마트홈 기술의 한계 극복</strong>
-          기존의 반자율적 스마트홈은 거주자의 생활 패턴이나 시계열적 변동에 능동적으로 대응하지 못해, 실제 에너지 소비 저감 및 쾌적도 향상 효과가 미미했습니다.
-        </li>
-        <li>
-          <strong>AI 기반 통합 제어 플랫폼 실현 (본 사업의 목적)</strong>
-          인공지능(AI) 기술을 접목하여 거주자의 행동 패턴을 스스로 학습하고, 자동 제어를 통해 가장 쾌적하고 안전한 주거환경을 제공함과 동시에 혁신적인 에너지 절감을 실현합니다.
-        </li>
+        <li>국내 전체 에너지 소비의 약 20%를 차지하는 건물 부문의 탄소 배출 및 에너지 소비 저감이 시급합니다.</li>
+        <li>설비 시설을 환경과 거주자에 맞게 효율적으로 운영하고 제어하는 시스템 도입이 필수적입니다.</li>
+        <li>기존의 일률적인 스마트홈은 능동적 대응이 불가하여 생활 편의성과 에너지 절감 효과가 미미했습니다.</li>
+        <li>AI 기술을 접목하여 거주자 행동 패턴을 학습하고 자동 제어하여, 쾌적하고 안전한 주거환경과 에너지 절감을 동시 달성합니다.</li>
       </ol>
     </div>
   </section>
 
-  <!-- 달라지는 점 -->
-  <section id="change" style="background-color: #ffffff;">
+  <!-- 달라지는 점 (가독성 강화) -->
+  <section id="change">
     <div class="section-title">
-      <p class="badge">무엇이 달라지나요?</p>
-      <h2>기존의 단순 수동 제어에서<br><em>생활에 맞춘 AI 자동 제어로</em></h2>
+      <h2>기존 수동 제어에서<br><em>생활 맞춤 AI 제어로</em></h2>
     </div>
     <div class="grid-2">
-      <div class="card" style="background-color: #f8fafc; border: 2px solid #cbd5e1;">
-        <h3 style="color: #475569;">변경 전: 직접 확인하고 따로 조절</h3>
+      <div class="card" style="background: #f9f9f9;">
+        <h3 style="color: #666;">변경 전 (수동 제어)</h3>
         <ul>
-          <li>냉·난방, 환기, 공기청정기를 사용자가 일일이 수동 제어</li>
-          <li>제어 미흡 및 부재 시 과냉·과난방 빈번하게 발생</li>
-          <li>체감에만 의존하여 쾌적도 저하 및 에너지 낭비 심화</li>
+          <li>냉·난방, 환기, 청정 사용자 수동 제어</li>
+          <li>제어 미흡 및 부재 시 과냉·과난방 발생</li>
+          <li>쾌적도 저하 및 에너지 낭비</li>
         </ul>
       </div>
-      <div class="card" style="border: 3px solid #2563eb; background-color: #f0f7ff;">
-        <h3>변경 후: AI 기반 맞춤 관리 지원</h3>
-        <ul style="font-weight: 800; color: #1e40af;">
-          <li>통합조절기와 스마트폰 앱으로 한 번에 상태 확인 및 AI 맞춤 제어</li>
-          <li>제어 최적화를 통해 불필요한 과냉·과난방 완벽 방지</li>
-          <li>센서 데이터 기반으로 최적의 쾌적도 유지 및 획기적인 에너지 절감</li>
+      <div class="card" style="border-color: #0044cc; background: #f0f8ff;">
+        <h3>변경 후 (AI 맞춤 제어)</h3>
+        <ul>
+          <li><strong>AI 기반 맞춤 제어 및 조절기 교체</strong></li>
+          <li><strong>제어 최적화 및 과냉·과난방 완벽 방지</strong></li>
+          <li><strong>최적의 쾌적도 유지 및 에너지 획기적 절감</strong></li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- 설치 안내 및 혜택 -->
-  <section id="installation">
+  <!-- 참여 기관 (한성시스코 설명 단축) -->
+  <section id="partners">
     <div class="section-title">
-      <p class="badge">설치 및 혜택 안내</p>
-      <h2>기존 설비와 연동하여<br><em>스마트한 혜택을 제공합니다</em></h2>
-    </div>
-    <div class="grid-3">
-      <div class="card">
-        <h3>💡 AI 통합조절기 및 센서</h3>
-        <p>기존 조절기를 교체하고, 온도·습도·미세먼지·CO₂ 등을 측정하는 환경센서를 설치합니다.</p>
-      </div>
-      <div class="card">
-        <h3>📱 원격 스마트폰 앱</h3>
-        <p>기기 상태 확인, 원격제어, 에너지 사용 절감 리포트 등을 스마트폰으로 간편하게 확인합니다.</p>
-      </div>
-      <div class="card" style="background-color: #eff6ff; border-color: #93c5fd;">
-        <h3 style="color: #2563eb;">🎁 실증세대 특별 증정품</h3>
-        <p style="font-weight: 800; font-size: 1.1em; color: #1e3a8a;">LG 퓨리케어 AI 오브제컬렉션 월핏<br>(약 98만 원 상당 지급)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 참여 기관 -->
-  <section id="partners" style="background-color: #ffffff;">
-    <div class="section-title">
-      <p class="badge">참여 기관</p>
-      <h2>기술 개발부터 검증까지<br><em>분야별 최고 전문기관이 함께합니다</em></h2>
+      <h2>함께하는 <em>전문 기관</em></h2>
     </div>
     <div style="max-width: 900px; margin: 0 auto;">
       
-      <!-- 주관기관: 한성시스코만 상세 설명 -->
+      <!-- 한성시스코 (설명 1줄로 단축) -->
       <div class="highlight-box">
-        <h3>🏢 주관 연구기관 : (주)한성시스코</h3>
-        <p style="font-size: 1.15em; font-weight: 700; color: #166534; margin-top: 10px;">
-          본 AI 스마트홈 실증사업을 총괄하는 주관기관으로서, 세대별 센서 및 조절기 설치, AI 통합 운용 플랫폼 연동, 그리고 현장 실증 운영 및 데이터 관리를 전담합니다.
-        </p>
+        <h3>🏢 주관 연구기관 : ㈜한성시스코</h3>
+        <p style="margin: 0; font-size: 1.2em; color: #111;">본 실증사업 총괄 및 세대 기기 설치, AI 플랫폼 연동, 실증 데이터를 전담 관리합니다.</p>
       </div>
       
-      <!-- 나머지 기관은 이름만 나열하여 가독성 확보 -->
-      <div class="partners-simple">
-        <div>
-          <strong>공동·참여기관 :</strong> 한국기술교육대학교, 한국전자기술연구원, 아이온커뮤니케이션즈, 한국건설생활환경시험연구원, 대전도시공사
-        </div>
-        <div style="margin-top: 20px; border-top: 1px dashed #cbd5e1; padding-top: 20px;">
-          <strong>위탁 용역기관 :</strong> 파란에너지
-        </div>
+      <!-- 기타 참여기관 -->
+      <div class="partners-box">
+        <p style="margin-bottom: 15px;"><strong>공동·참여기관 :</strong> 한국기술교육대학교, 한국전자기술연구원, 아이온커뮤니케이션즈, 한국건설생활환경시험연구원, 대전도시공사</p>
+        <p style="margin: 0; padding-top: 15px; border-top: 2px dashed #ccc;"><strong>위탁용역기관 :</strong> 파란에너지</p>
       </div>
     </div>
   </section>
 
-  <!-- 하단 푸터 (정부기관 다시 명시) -->
+  <!-- 하단 정부기관 명시 -->
   <footer>
-    <span class="gov-logos">주관: 산업통상자원부 / 전담: 한국산업기술기획평가원(KEIT)</span>
-    <strong>AI 기반 스마트홈 통합 운용 플랫폼 및 서비스 상용화 정부 지원 실증 사업</strong>
-    <p style="margin-top: 15px; font-weight: 400;">© 2026 AI Smart Home Consortium. All rights reserved.</p>
+    <span class="gov-text">주관: 산업통상자원부 / 전담: 한국산업기술기획평가원(KEIT)</span>
+    AI 기반 스마트홈 통합 운용 플랫폼 및 서비스 상용화 정부 지원 실증 사업<br>
+    © 2026 AI Smart Home Consortium.
   </footer>
 
-  <!-- 플로팅 전화 문의 버튼 -->
-  <a class="floating-btn" aria-label="실증세대 모집 문의전화" href="tel:042-939-9692">
-    📞 042-939-9692 전화 문의
-  </a>
+  <!-- 문의 버튼 -->
+  <a class="floating-btn" href="tel:042-939-9692">📞 042-939-9692 문의</a>
 
 </body>
 </html>
